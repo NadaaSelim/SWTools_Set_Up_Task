@@ -27,18 +27,17 @@ import data.Calculation;
 
 
 @Stateless
-@Path("/calc")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-
-public class CalcService {
+@Path("/api")
+public class CalcService{
 	
 	
 	@PersistenceContext(unitName = "Calc_Task")
 	private EntityManager em;
 	
 	@POST
-	@Path("perform_calc")
+	@Path("calc")
 	public JsonObject performCalc(InputStream input){
 		
 		
@@ -66,7 +65,7 @@ public class CalcService {
 	}
 	
 	@GET
-	@Path("get_all_calcs")
+	@Path("calculations")
 	public List<JsonObject> getAllCalcs() {
 		
 		TypedQuery<Calculation> q = em.createQuery("select c from Calculation c", Calculation.class);
